@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Casamento Gabriel & Rayanne</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos complementares */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/fundo.jpg') no-repeat center center/cover;
+
+        }
+
+        .hero {
+            position: relative;
+            background: url('images/fotoprincipal.jpeg') no-repeat center center/cover;
+            height: 80vh;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .overlay h1 span {
+            font-size: 5rem;
+        }
+
+        .evento {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        iframe {
+            border: none;
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .galeria {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .galeria img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+.modal-content {
+    display: block;
+    margin: 5% auto;
+    max-width: 90vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+        .fechar {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .presenca, .recados {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        form input, form textarea {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background-color: #0446a8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #025f96;
+        }
+
+h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #0d79df;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="overlay">
+            <h1><span>Gabriel &<br>Rayanne</span></h1>
+            <p>Sábado, 27 de setembro de 2025 – Faltam 54 dias</p>
+        </div>
+    </header>
+
+    <section class="evento">
+        <h2>Casamento Rayanne e Gabriel</h2>
+        <p><strong>Data:</strong> 27 de setembro de 2025 — 14h00</p>
+        <p><strong>Local:</strong> Sítio Ferrarez - Avenida Abílio Augusto Távora - 741 - Jardim Alvorada, Nova Iguaçu - RJ, Brasil</p>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.968864410613!2d-43.49414924521273!3d-22.766536725923036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x995df25178fb7d%3A0xb98318577363638d!2sS%C3%ADtio%20Ferrarez!5e0!3m2!1spt-BR!2sbr!4v1754274294719!5m2!1spt-BR!2sbr"
+            loading="lazy" allowfullscreen>
+        </iframe>
+    </section>
+
+    <section class="galeria">
+        <h2>Galeria pré wedding </h2>
+        <div class="galeria-grid">
+            <img src="images/foto1.jpg" onclick="abrirModal(this.src)">
+            <img src="images/foto2.jpeg" onclick="abrirModal(this.src)">
+            <img src="images/foto3.jpg" onclick="abrirModal(this.src)">
+            <img src="images/foto4.jpg" onclick="abrirModal(this.src)">
+            <img src="images/foto6.jpeg" onclick="abrirModal(this.src)">
+            <img src="images/foto5.jpg" onclick="abrirModal(this.src)">
+            <img src="images/foto7.jpeg" onclick="abrirModal(this.src)">
+            <img src="images/foto8.jpeg" onclick="abrirModal(this.src)">
+            <img src="images/foto9.jpeg" onclick="abrirModal(this.src)">
+            <img src="images/foto10.jpeg" onclick="abrirModal(this.src)">
+        </div>
+        <div id="modal" class="modal" onclick="fecharModal()">
+            <span class="fechar">&times;</span>
+            <img class="modal-content" id="imgModal">
+        </div>
+    </section>
+
+    <section class="presenca">
+        <h2>Confirme sua presença</h2>
+<form onsubmit="enviarWhatsApp(event)">
+    <input type="text" id="nomePresenca" placeholder="Seu nome completo" required>
+    <button type="submit">Confirmar</button>
+</form>
+    </section>
+
+<section class="recados">
+    <h2>Mural de Recados</h2>
+    <form onsubmit="adicionarRecado(event)">
+        <input type="text" id="nomeRecado" placeholder="Seu nome" required><br>
+        <textarea id="mensagemRecado" placeholder="Digite seu recado" required></textarea><br>
+        <button type="submit">Enviar Recado</button>
+    </form>
+    <div id="listaRecados" style="margin-top: 30px;"></div>
+</section>
+
+    <script>
+function enviarWhatsApp(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nomePresenca').value;
+    const numeroWhatsApp = '5521976563928'; // Coloque aqui seu número com DDI e DDD, ex: 5521999999999
+
+    const mensagem = `Olá, sou ${nome} e confirmo presença no casamento de Gabriel & Rayanne!`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+}
+</script>
+
+    <script>
+        function abrirModal(src) {
+            document.getElementById('imgModal').src = src;
+            document.getElementById('modal').style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById('modal').style.display = "none";
+        }
+    </script>
+
+    <script>
+function adicionarRecado(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nomeRecado').value.trim();
+    const mensagem = document.getElementById('mensagemRecado').value.trim();
+
+    if (!nome || !mensagem) return;
+
+    const container = document.getElementById('listaRecados');
+    const bloco = document.createElement('div');
+    bloco.style.marginBottom = '20px';
+    bloco.style.padding = '15px';
+    bloco.style.border = '1px solid #ccc';
+    bloco.style.borderRadius = '10px';
+    bloco.style.background = 'rgba(255, 255, 255, 0.8)';
+    bloco.innerHTML = `<strong>${nome}:</strong><br>${mensagem}`;
+
+    container.prepend(bloco); // recado mais recente no topo
+
+    document.getElementById('nomeRecado').value = '';
+    document.getElementById('mensagemRecado').value = '';
+}
+</script>
+</body>
+</html>
